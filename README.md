@@ -43,3 +43,4 @@ See also
 --------
 * [PHP RFC: Static Class Constructor](https://wiki.php.net/rfc/static_class_constructor)
 * [Class static initialization block @ PHP Internals](https://externals.io/message/116031)
+* [Class static initialization blocks @ V8.dev](https://v8.dev/features/class-static-initializer-blocks)
