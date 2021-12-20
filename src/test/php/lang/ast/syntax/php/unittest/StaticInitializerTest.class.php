@@ -9,19 +9,19 @@ class StaticInitializerTest extends EmittingTest {
   #[Test]
   public function static_initializer_called() {
     $t= $this->type('class <T> {
-      public static $initialized= false;
+      private static $initialized= false;
 
       static {
         self::$initialized= true;
       }
     }');
-    Assert::true($t->getField('initialized')->get(null));
+    Assert::true($t->getField('initialized')->setAccessible(true)->get(null));
   }
 
   #[Test]
   public function can_have_multiple_blocks() {
     $t= $this->type('class <T> {
-      public static $initialized= [];
+      private static $initialized= [];
 
       static {
         self::$initialized[]= 1;
@@ -30,7 +30,7 @@ class StaticInitializerTest extends EmittingTest {
         self::$initialized[]= 2;
       }
     }');
-    Assert::equals([1, 2], $t->getField('initialized')->get(null));
+    Assert::equals([1, 2], $t->getField('initialized')->setAccessible(true)->get(null));
   }
 
   #[Test, Expect(class: Errors::class, withMessage: 'Expected static modifier, have none in static initializer')]
