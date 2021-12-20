@@ -8,7 +8,7 @@ XP static initializer blocks
 [![Supports PHP 8.0+](https://raw.githubusercontent.com/xp-framework/web/master/static/php-8_0plus.svg)](http://php.net/)
 [![Latest Stable Version](https://poser.pugx.org/xp-lang/xp-static/version.png)](https://packagist.org/packages/xp-lang/xp-static)
 
-Plugin for the [XP Compiler](https://github.com/xp-framework/compiler/) which adds a static initializer syntax. This is compiled to `__static()` functions recognized by the XP class loading mechanism.
+Plugin for the [XP Compiler](https://github.com/xp-framework/compiler/) which adds a static initializer syntax for PHP. This is compiled to `__static()` functions recognized by the XP class loading mechanism.
 
 Example
 -------
@@ -42,5 +42,7 @@ No further action is required.
 See also
 --------
 * [PHP RFC: Static Class Constructor](https://wiki.php.net/rfc/static_class_constructor)
-* [Class static initialization block @ PHP Internals](https://externals.io/message/116031)
+* [Class static initialization block @ PHP Internals (2021)](https://externals.io/message/116031)
 * [Class static initialization blocks @ V8.dev](https://v8.dev/features/class-static-initializer-blocks)
+* [Static constructor @ PHP Internals (2015)](https://externals.io/message/84602)
+* [Static Constructors (C# Programming Guide)](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/static-constructors)
