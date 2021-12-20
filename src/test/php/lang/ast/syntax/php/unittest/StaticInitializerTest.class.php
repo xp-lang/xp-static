@@ -18,6 +18,21 @@ class StaticInitializerTest extends EmittingTest {
     Assert::true($t->getField('initialized')->get(null));
   }
 
+  #[Test]
+  public function can_have_multiple_blocks() {
+    $t= $this->type('class <T> {
+      public static $initialized= [];
+
+      static {
+        self::$initialized[]= 1;
+      }
+      static {
+        self::$initialized[]= 2;
+      }
+    }');
+    Assert::equals([1, 2], $t->getField('initialized')->get(null));
+  }
+
   #[Test, Expect(class: Errors::class, withMessage: 'Expected static modifier, have none in static initializer')]
   public function block_without_modifier() {
     $this->type('class <T> {

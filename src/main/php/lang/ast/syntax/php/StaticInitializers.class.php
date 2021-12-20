@@ -12,14 +12,18 @@ class StaticInitializers implements Extension {
       }
 
       $line= $parse->token->line;
-
       $parse->forward();
       $statements= $this->statements($parse);
       $parse->expecting('}', 'static initializer');
 
-      // Enclose statements in a __static() function which will be called by XP class loading
-      $body['__static()']= new Method($modifiers, '__static', new Signature([], null), $statements, [], null, $line);
-      $body['__static()']->holder= $holder;
+      // Enclose statements in a __static() function recognized by XP class loading.
+      // If there are multiple initializer blocks, merge all of their statements.
+      if ($initializer= &$body['__static()']) {
+        $initializer->body= array_merge($initializer->body, $statements);
+      } else {
+        $initializer= new Method($modifiers, '__static', new Signature([], null), $statements, [], null, $line);
+        $initializer->holder= $holder;
+      }
     });
   }
 }
