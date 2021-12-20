@@ -3,6 +3,8 @@ XP static initializer blocks - ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 0.2.0 / 2021-12-20
+
 * Allowed multiple static initializer blocks, just like NodeJS does, see
   https://v8.dev/features/class-static-initializer-blocks#multiple-blocks
   (@thekid)
