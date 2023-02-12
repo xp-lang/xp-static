@@ -2,7 +2,7 @@
 
 use lang\ast\Errors;
 use lang\ast\unittest\emit\EmittingTest;
-use unittest\{Assert, Expect, Test};
+use test\{Assert, Expect, Test};
 
 class StaticInitializerTest extends EmittingTest {
 
@@ -33,21 +33,21 @@ class StaticInitializerTest extends EmittingTest {
     Assert::equals([1, 2], $t->getField('initialized')->setAccessible(true)->get(null));
   }
 
-  #[Test, Expect(class: Errors::class, withMessage: 'Expected static modifier, have none in static initializer')]
+  #[Test, Expect(class: Errors::class, message: '/Expected static modifier, have none in static initializer/')]
   public function block_without_modifier() {
     $this->type('class <T> {
       { }
     }');
   }
 
-  #[Test, Expect(class: Errors::class, withMessage: 'Expected static modifier, have final in static initializer')]
+  #[Test, Expect(class: Errors::class, message: '/Expected static modifier, have final in static initializer/')]
   public function block_with_incorrect_modifier() {
     $this->type('class <T> {
       final { }
     }');
   }
 
-  #[Test, Expect(class: Errors::class, withMessage: 'Cannot redeclare method __static()')]
+  #[Test, Expect(class: Errors::class, message: '/Cannot redeclare method __static\(\)/')]
   public function cannot_declare_static_function() {
     $this->type('class <T> {
       static { }
