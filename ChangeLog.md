@@ -3,6 +3,10 @@ XP static initializer blocks - ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 1.0.0 / 2023-05-27
+
+* Removed holder property, see xp-framework/ast#47 - @thekid
+
 ## 0.3.0 / 2022-01-24
 
 * Made compatible with compiler version 8.0.0, and dropped support

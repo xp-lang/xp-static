@@ -6,7 +6,7 @@ use lang\ast\syntax\Extension;
 class StaticInitializers implements Extension {
 
   public function setup($language, $emitter) {
-    $language->body('{', function($parse, &$body, $meta, $modifiers, $holder) {
+    $language->body('{', function($parse, &$body, $meta, $modifiers) {
       if (['static'] !== $modifiers) {
         $parse->raise('Expected static modifier, have '.($modifiers ? implode(' ', $modifiers) : 'none'), 'static initializer');
       }
@@ -22,7 +22,6 @@ class StaticInitializers implements Extension {
         $initializer->body= array_merge($initializer->body, $statements);
       } else {
         $initializer= new Method($modifiers, '__static', new Signature([], null), $statements, [], null, $line);
-        $initializer->holder= $holder;
       }
     });
   }
