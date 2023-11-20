@@ -3,6 +3,8 @@ XP static initializer blocks - ChangeLog
 
 ## ?.?.? / ????-??-??
 
+* Added PHP 8.4 to the test matrix - @thekid
+
 ## 1.0.0 / 2023-05-27
 
 * Removed holder property, see xp-framework/ast#47 - @thekid
