@@ -8,19 +8,19 @@ class StaticInitializerTest extends EmittingTest {
 
   #[Test]
   public function static_initializer_called() {
-    $t= $this->type('class %T {
+    $t= $this->declare('class %T {
       private static $initialized= false;
 
       static {
         self::$initialized= true;
       }
     }');
-    Assert::true($t->getField('initialized')->setAccessible(true)->get(null));
+    Assert::true($t->property('initialized')->get(null));
   }
 
   #[Test]
   public function can_have_multiple_blocks() {
-    $t= $this->type('class %T {
+    $t= $this->declare('class %T {
       private static $initialized= [];
 
       static {
@@ -30,26 +30,26 @@ class StaticInitializerTest extends EmittingTest {
         self::$initialized[]= 2;
       }
     }');
-    Assert::equals([1, 2], $t->getField('initialized')->setAccessible(true)->get(null));
+    Assert::equals([1, 2], $t->property('initialized')->get(null));
   }
 
   #[Test, Expect(class: Errors::class, message: '/Expected static modifier, have none in static initializer/')]
   public function block_without_modifier() {
-    $this->type('class %T {
+    $this->declare('class %T {
       { }
     }');
   }
 
   #[Test, Expect(class: Errors::class, message: '/Expected static modifier, have final in static initializer/')]
   public function block_with_incorrect_modifier() {
-    $this->type('class %T {
+    $this->declare('class %T {
       final { }
     }');
   }
 
   #[Test, Expect(class: Errors::class, message: '/Cannot redeclare method __static\(\)/')]
   public function cannot_declare_static_function() {
-    $this->type('class %T {
+    $this->declare('class %T {
       static { }
       static function __static() { }
     }');
