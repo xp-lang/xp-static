@@ -41,7 +41,8 @@ No further action is required.
 
 See also
 --------
-* [PHP RFC: Static Class Constructor](https://wiki.php.net/rfc/static_class_constructor)
+* [PHP RFC: Static Constructors](https://wiki.php.net/rfc/static_constructor) - 2024
+* [PHP RFC: Static Class Constructor](https://wiki.php.net/rfc/static_class_constructor) - 2015
 * [Class static initialization block @ PHP Internals (2021)](https://externals.io/message/116031)
 * [Class static initialization blocks @ V8.dev](https://v8.dev/features/class-static-initializer-blocks)
 * [Static constructor @ PHP Internals (2015)](https://externals.io/message/84602)
